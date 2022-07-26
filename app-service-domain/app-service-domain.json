@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "websiteName": {
+        "defaultValue": "azurelinuxapp23490-webapp.azurewebsites.net",
+        "type": "string"
+      },
+      "websiteCustomDomainName": {
+        "type": "string",
+        "defaultValue": "azurelinuxapp23490.com"
+      }
+    },
+    "resources": [
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[concat(parameters('websiteName'),'/',parameters('websiteCustomDomainName'))]",
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "domainId": null,
+        "hostNameType": "Verified",
+        "siteName": "parameters('websiteName')"
+      }
+    }
+  ]
+  }
